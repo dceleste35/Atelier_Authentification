@@ -49,4 +49,6 @@ jobs:
           script: |
             cd $HOME/www/atelier1
             rm -f .htpasswd
-            echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
+            cat > .htpasswd << 'EOL'
+            ${{ secrets.MY_SECRET_FILE_CONTENT }}
+            EOL
