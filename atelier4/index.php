@@ -1,6 +1,6 @@
 <?php
 
-$valid_users = [
+$validUsers = [
     'admin' => [
         'password' => 'secret',
         'role' => 'admin'
@@ -21,14 +21,14 @@ if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
 $username = $_SERVER['PHP_AUTH_USER'];
 $password = $_SERVER['PHP_AUTH_PW'];
 
-if (!isset($valid_users[$username]) || $valid_users[$username]['password'] !== $password) {
+if (!isset($validUsers[$username]) || $validUsers[$username]['password'] !== $password) {
     header('WWW-Authenticate: Basic realm="Zone Protégée"');
     header('HTTP/1.0 401 Unauthorized');
     echo 'Nom d\'utilisateur ou mot de passe incorrect.';
     exit;
 }
 
-$user_role = $valid_users[$username]['role'];
+$userRole = $validUsers[$username]['role'];
 
 ?>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ $user_role = $valid_users[$username]['role'];
     <p>C'est le serveur qui vous demande un nom d'utilisateur et un mot de passe via le header WWW-Authenticate</p>
     <p>Aucun système de session ou cookie n'est utilisé pour cet atelier</p>
     <p>Vous êtes connecté en tant que : <?php echo htmlspecialchars($_SERVER['PHP_AUTH_USER']); ?></p>
-    <?php if ($user_role === 'admin'): ?>
+    <?php if ($userRole === 'admin'): ?>
         <div>
             <h2>Section Administration</h2>
             <p>Cette section n'est visible que par les administrateurs.</p>
@@ -56,7 +56,7 @@ $user_role = $valid_users[$username]['role'];
         </div>
     <?php endif; ?>
 
-    <?php if ($user_role === 'user'): ?>
+    <?php if ($userRole === 'user'): ?>
         <div>
             <h2>Section Utilisateur</h2>
             <p>Cette section est visible par les utilisateurs.</p>
