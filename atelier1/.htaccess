@@ -1,4 +1,4 @@
 AuthName "Accès protégé"
 AuthType Basic
-AuthUserFile /home/dceleste/www/.htpasswd
+AuthUserFile /home/dceleste/www/atelier1/.htpasswd
 Require valid-user
