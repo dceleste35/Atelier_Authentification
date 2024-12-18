@@ -1,17 +1,15 @@
-name: Modify htpasswd file
-on:
-  push:
-    branches:
-      - main
-
+name: Update htpasswd on Alwaysdata
+on: push
 jobs:
-  create-file:
+  update-htpasswd:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Create htpasswd file
-        run: |
-          echo "Test content" > ./atelier1/test.txt
-          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > ./atelier1/.htpasswd
+      - name: Connexion SSH et mise à jour htpasswd
+        uses: appleboy/ssh-action@master
+        with:
+          host: "ssh-${{ secrets.USERNAME }}.alwaysdata.net"
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd $HOME/www/atelier1
+            echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
