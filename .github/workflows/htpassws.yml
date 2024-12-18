@@ -13,4 +13,5 @@ jobs:
 
       - name: Create htpasswd file
         run: |
+          echo "Test content" > ./atelier1/test.txt
           echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > ./atelier1/.htpasswd
