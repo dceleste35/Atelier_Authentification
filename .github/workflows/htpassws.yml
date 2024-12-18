@@ -1,0 +1,16 @@
+name: Modify htpasswd file
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create htpasswd file
+        run: |
+          echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > ./www/atelier1/.htpasswd
