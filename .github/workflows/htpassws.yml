@@ -12,4 +12,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd $HOME/www/atelier1
+            echo "test test" > test.txt
             echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
