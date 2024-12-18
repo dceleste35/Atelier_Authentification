@@ -48,6 +48,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd $HOME/www/atelier1
-            echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" | while IFS= read -r line; do
-              echo "$line" >> .htpasswd
-            done
+            rm -f .htpasswd
+            echo "${{ secrets.MY_SECRET_FILE_CONTENT }}" > .htpasswd
