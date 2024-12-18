@@ -47,6 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Se connecter</button>
     </form>
     <br>
-    <a href="../index.html">Retour à l'accueil</a>  
+    <a href="../index.html">Retour à l'accueil</a>
 </body>
 </html>
